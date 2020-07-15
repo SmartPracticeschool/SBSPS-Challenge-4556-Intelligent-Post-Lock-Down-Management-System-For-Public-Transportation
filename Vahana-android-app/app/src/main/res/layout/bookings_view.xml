@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/bookingsViewCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/box"
+    app:cardCornerRadius="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_12sdp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_78sdp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:padding="@dimen/_12sdp">
+
+        <ImageView
+            android:id="@+id/qrcode"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_weight="0.5"
+            android:src="@drawable/qrcode" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:weightSum="3"
+            android:layout_marginRight="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/from_bookings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FROM"
+                    android:textSize="@dimen/listTitle"
+                    android:textColor="@color/white"
+                    android:singleLine="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textSize="@dimen/listTitle"
+                    android:textColor="@color/white"
+                    android:singleLine="true"/>
+
+                <TextView
+                    android:id="@+id/to_bookings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TO"
+                    android:textSize="@dimen/listTitle"
+                    android:textColor="@color/white"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/date_bookings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12/07/2020"
+                android:textSize="@dimen/smallText"
+                android:textColor="@color/hintenh"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Passengers - "
+                    android:textSize="@dimen/smallText"
+                    android:textColor="@color/hintenh" />
+
+                <TextView
+                    android:id="@+id/seat_bookings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="03"
+                    android:textSize="@dimen/smallText"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:fitsSystemWindows="true"
+            android:layout_weight="0.5"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

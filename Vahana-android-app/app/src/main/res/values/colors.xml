@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="primary">#8D6FC2</color>
+    <color name="primary1">#B39DDB</color>
+    <color name="primaryvariant">#3700B3</color>
+    <color name="secondary">#2773B4</color>
+    <color name="background">#121212</color>
+    <color name="error">#CF6679</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="appbar">#17FFFFFF</color>
+    <color name="box">#24FFFFFF</color>
+    <color name="hint">#707070</color>
+    <color name="hintenh">#80FFFFFF</color>
+    <color name="material_blue_grey_800">#ff37474f</color>
+    <color name="material_blue_grey_900">#ff263238</color>
+    <color name="material_blue_grey_950">#ff21272b</color>
+    <color name="material_deep_teal_200">#ff80cbc4</color>
+    <color name="material_deep_teal_500">#ff009688</color>
+    <color name="material_grey_100">#fff5f5f5</color>
+    <color name="material_grey_300">#ffe0e0e0</color>
+    <color name="material_grey_50">#fffafafa</color>
+    <color name="material_grey_600">#ff757575</color>
+    <color name="material_grey_700">#ff616161</color>
+    <color name="material_grey_800">#ff424242</color>
+    <color name="material_grey_850">#ff303030</color>
+    <color name="material_grey_900">#ff212121</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#ffffff</color>
+</resources>

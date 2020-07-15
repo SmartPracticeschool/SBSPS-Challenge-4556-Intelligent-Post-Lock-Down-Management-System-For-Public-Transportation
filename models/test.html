@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ipCam</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+<script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
+</head>
+
+<body>
+    <h1>ipCam</h1>
+    <center><img id="motionjpeg" width="450px" height="450px" src="http://192.168.43.1:8080/video/mjpeg" crossorigin="true" ></img>
+    <canvas width="630" height="500" style="border:2px solid #d3d3d3;margin-top: 50px;"></canvas></center>
+    <script>
+        //Using jQuery for simplicity
+var video = document.querySelector('video');
+var image1 = document.getElementById("motionjpeg");
+        $(document).ready(function() {
+          
+            motionjpeg("#motionjpeg"); // Use the function on the image
+            load();
+        });
+
+        function motionjpeg(id) {
+    var image = $(id), src;
+
+    if (!image.length) return;
+
+    src = image.attr("src");
+    if (src.indexOf("?") < 0) {
+        image.attr("src", src + "?"); // must have querystring
+    }
+
+    image.on("load", function() {
+        //console.log("Progress");
+        if(!flag){
+          //run(this);
+        }
+        
+        // this cause the load event to be called "recursively"
+        this.src = this.src.replace(/\?[^\n]*$/, "?") +
+            (new Date()).getTime(); // 'this' refers to the image
+    });
+}
+
+var flag = false;
+var model;
+async function load(){
+model = await tf.automl.loadObjectDetection('model/model.json');
+}
+
+async function run(img1) {
+        // [START load_and_run_model]
+        if(model || model != null){
+        flag = true;
+        //console.log("testing" + model);
+        //const img = document.getElementById('salad');
+        const options = {
+            score: 0.5,
+            iou: 0.5,
+            topk: 20
+        };
+        const predictions = await model.detect(img1, options);
+        // [END load_and_run_model]
+        console.log(predictions);
+        flag = false;
+        }
+        // Show the resulting object on the page.
+        //const pre = document.createElement('pre');
+        //pre.textContent = JSON.stringify(predictions, null, 2);
+        //document.body.append(pre);
+    }
+    </script>
+</body>
+
+</html>

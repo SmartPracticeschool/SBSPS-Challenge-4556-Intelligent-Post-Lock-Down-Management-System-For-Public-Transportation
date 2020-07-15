@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FaceMask Detection</title>
+
+    <style type="text/css">
+      body{text-align: center;background: #f2f6f8;}
+.img{position:absolute;z-index:1;}
+
+#container{
+    display:inline-block;
+    width:500px; 
+    height:500px;
+    margin: 50px auto; 
+    background: black; 
+    position:relative; 
+    border:5px solid black; 
+    border-radius: 10px; 
+    box-shadow: 0 5px 50px #333}
+
+#gameCanvas{
+    position:relative;
+    z-index:20;
+}
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
+</head>
+
+<body>
+<center>
+<div id="container">
+    <img class='img' id="motionjpeg" src="http://192.168.43.1:8080/video/mjpeg" crossorigin="true" width="500px" height="500px" />
+    <canvas id="gameCanvas" width="500" height="500"></canvas>
+</div>
+</center>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+   
+    var stream = document.getElementById("motionjpeg");
+    var canvas=document.getElementById("gameCanvas");
+    var ctx = canvas.getContext('2d');
+    var flag = false;
+    var model;
+
+    motionjpeg("#motionjpeg"); // Use the function on the image
+    load();
+
+   function motionjpeg(id) {
+    var image = $(id), src;
+
+    if (!image.length) return;
+
+    src = image.attr("src");
+    if (src.indexOf("?") < 0) {
+        image.attr("src", src + "?"); // must have querystring
+  }
+
+    image.on("load", function() {
+        //console.log("Progress");
+        if(!flag){
+          run();
+        }
+        
+        // this cause the load event to be called "recursively"
+        this.src = this.src.replace(/\?[^\n]*$/, "?") +
+            (new Date()).getTime(); // 'this' refers to the image
+    });
+}
+
+
+async function load(){
+model = await tf.automl.loadObjectDetection('model1/model.json');
+}
+
+async function run() {
+        // [START load_and_run_model]
+        if(model || model != null){
+        flag = true;
+        //console.log("testing" + model);
+        //const img = document.getElementById('salad');
+        const options = {
+            score: 0.5,
+            iou: 0.5,
+            topk: 20
+        };
+        const predictions = await model.detect(stream, options);
+        // [END load_and_run_model]
+        console.log(predictions);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if(predictions.length > 0){
+        	for(var i=0; i<predictions.length; i++){
+            ctx.beginPath();
+            ctx.lineWidth = "4";
+            ctx.strokeStyle = "green";
+            ctx.rect(predictions[i].box.left, predictions[i].box.top, predictions[i].box.width, predictions[i].box.height);
+            ctx.font="20px Comic Sans MS";
+            ctx.fillStyle = "red";
+            //ctx.textAlign = "left";
+            /*ctx.fillText(predictions[0].label + " " + predictions[0].score.toFixed(3), predictions[0].box.left + 5, predictions[0].box.top + 20);*/
+            ctx.fillText("person" + " " + predictions[i].score.toFixed(3), predictions[i].box.left + 5, predictions[i].box.top + 20);
+            ctx.stroke();
+        	}
+        }
+        flag = false;
+        }
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item android:title="General" android:id="@+id/general">
+        <menu>
+            <item
+                android:id="@+id/vahanastation"
+                android:icon="@drawable/ic_location"
+                android:title="Vahana Stations"
+                android:iconTint="@color/white"/>
+            <item
+                android:id="@+id/rate"
+                android:icon="@drawable/ic_star"
+                android:title="Rate our App"
+                android:iconTint="@color/white"/>
+            <item
+                android:id="@+id/notification"
+                android:icon="@drawable/ic_chat"
+                android:title="Notification"
+                android:iconTint="@color/white"/>
+        </menu>
+    </item>
+
+    <item android:title="Communicate" android:id="@+id/communicate">
+        <menu>
+            <item
+                android:id="@+id/setting"
+                android:icon="@drawable/ic_settings"
+                android:title="Settings"
+                android:iconTint="@color/white"/>
+            <item
+                android:id="@+id/privacy"
+                android:icon="@drawable/ic_lock"
+                android:title="Privacy"
+                android:iconTint="@color/white"/>
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Logout"
+                android:iconTint="@color/white"/>
+        </menu>
+    </item>
+</menu>

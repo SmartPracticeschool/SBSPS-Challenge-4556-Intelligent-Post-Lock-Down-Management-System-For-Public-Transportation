@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/bookingsViewCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/box"
+    app:cardCornerRadius="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_12sdp"
+    android:layout_marginLeft="@dimen/_12sdp"
+    android:layout_marginRight="@dimen/_12sdp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:padding="@dimen/_8sdp">
+
+        <ImageView
+            android:id="@+id/icon_station"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_flight"
+            android:layout_gravity="left|center"
+            android:adjustViewBounds="true"
+            android:fitsSystemWindows="true"
+            android:layout_weight="0.5"
+            android:layout_margin="@dimen/_4sdp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/name_station"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bus Stop 1"
+                android:textSize="@dimen/listTitle"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/distance_station"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 KM"
+            android:textSize="@dimen/listTitle"
+            android:textColor="@color/hintenh"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

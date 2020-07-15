@@ -1,0 +1,112 @@
+ <html>
+ <head>
+ <style type="text/css">
+      body {
+    background-color: ivory;
+}
+#myCanvas {
+    border: 1px solid red;
+    background-image: url("https://matrixfrats.com/tensor_test/test11.jpg");
+    background-color: #FFFFFF;
+    background-position: center;
+    background-size: 100% 100%;
+}
+    </style>
+<script src="https://unpkg.com/@tensorflow/tfjs"></script>
+<script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
+</head>
+<!-- [END deps]  -->
+<!-- [START img_tag]  -->
+<body>
+<center><video src="http://192.168.43.1:8080/video/mjpeg" type="video/mjpeg" width="450px" height="450px" autoplay controls></video>
+<canvas width="630" height="500" style="border:2px solid #d3d3d3;margin-top: 50px;"></canvas></center>
+<img src="" id="pred" style="display:none;"/>
+<!-- [END img_tag]  -->
+<script>
+var video = document.querySelector('video');
+  var canvas = document.querySelector('canvas');
+  var ctx = canvas.getContext('2d');
+  var model;
+  var size = 630, size1 = 500;
+  var img = document.getElementById('pred');
+        const options = {
+            score: 0.5,
+            iou: 0.5,
+            topk: 20
+        };
+  
+  //video.play();
+        load();
+
+
+ video.addEventListener('play', function() {
+  draw(this, ctx, size, size1);
+  }, false);
+
+function draw(video, context, width, height){
+context.drawImage(video, 0, 0, width, height);
+snapshot();
+
+}
+
+function snapshot() {
+      var cw = video.clientWidth;
+      var ch = video.clientHeight;
+      //ctx.drawImage(video, 0, 0, cw, ch, 0, 0, cw / 2, ch / 3);
+      img.src = canvas.toDataURL();
+      img.height = ch;
+      img.width = cw;
+      run();
+  }
+  
+  async function load(){
+      model = await tf.automl.loadObjectDetection('model/model.json');
+  }
+
+    async function run() {
+        // [START load_and_run_model]
+        // const model = await tf.automl.loadObjectDetection('model.json');
+        if(model || model != null){
+            const predictions = await model.detect(video, options);
+        // [END load_and_run_model]
+        //console.log(predictions);
+        if(predictions.length > 0){
+            ctx.beginPath();
+        ctx.lineWidth = "4";
+        ctx.strokeStyle = "green";
+        //console.log(predictions[0].box.left + ", " + (predictions[0].box.left/video.clientWidth)*400);
+        //console.log((predictions[0].box.left/video.clientWidth)*400);
+        // ctx.rect((predictions[0].box.left/video.clientWidth)*400, 
+        // (predictions[0].box.top/video.clientHeight)*400, 
+        // (predictions[0].box.width/video.clientWidth)*400, (predictions[0].box.height/video.clientHeight)*400);
+        // ctx.stroke();
+        ctx.rect(predictions[0].box.left, predictions[0].box.top, predictions[0].box.width, predictions[0].box.height);
+        ctx.font="20px Comic Sans MS";
+        ctx.fillStyle = "red";
+        //ctx.textAlign = "left";
+        ctx.fillText(predictions[0].label + " " + predictions[0].score.toFixed(3), predictions[0].box.left + 5, predictions[0].box.top + 20);
+        ctx.stroke();
+        }
+        }
+        setTimeout(draw, 10, video, ctx, size, size1);
+        // if(predictions.length > 0 && predictions[0].score > 0.95 ){
+        //     var c = document.getElementById("myCanvas");
+        // var ctx = c.getContext("2d");
+        // ctx.beginPath();
+        // ctx.lineWidth = "4";
+        // ctx.strokeStyle = "green";
+        // ctx.rect(predictions[0].box.left, predictions[0].box.top, predictions[0].box.width, predictions[0].box.height);
+        // ctx.stroke();
+        // } else {
+        //     alert("No mask found");
+        // }
+        
+        // Show the resulting object on the page.
+        //const pre = document.createElement('pre');
+        //pre.textContent = JSON.stringify(predictions, null, 2);
+        //document.body.append(pre);
+    }
+    
+</script>
+</body>
+</html>

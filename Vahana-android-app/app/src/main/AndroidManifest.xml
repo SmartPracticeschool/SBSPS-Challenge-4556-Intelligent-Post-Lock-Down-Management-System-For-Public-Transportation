@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bitbybit.vahana">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/vahana"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/vahana"
+        android:supportsRtl="true"
+        android:name=".ui.App"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".ui.SplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/landing_page_theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.LoginActivity"
+            android:theme="@style/custom_theme"></activity>
+        <activity
+            android:name=".ui.SignUpActivity"
+            android:theme="@style/custom_theme"></activity>
+        <activity
+            android:name=".ui.HomePage"
+            android:theme="@style/custom_theme"></activity>
+        <activity
+            android:name=".ui.Book"
+            android:theme="@style/custom_theme"></activity>
+        <activity
+            android:name=".ui.Bookings"
+            android:theme="@style/custom_theme"></activity>
+        <activity
+            android:name=".ui.Search"
+            android:theme="@style/custom_theme"></activity>
+        <activity
+            android:name=".ui.Stations"
+            android:theme="@style/custom_theme"></activity>
+        <activity
+            android:name=".Chat"
+            android:theme="@style/custom_theme"></activity>
+
+        <service
+            android:name=".location.LocationService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".location.LocationUpdatesBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.location.sample.locationupdatespendingintent.LocationUpdatesBroadcastReceiver.ACTION_PROCESS_UPDATES" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
