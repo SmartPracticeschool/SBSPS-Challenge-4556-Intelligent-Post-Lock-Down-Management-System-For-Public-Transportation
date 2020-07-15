@@ -1,0 +1,47 @@
+{
+  "name": "vahana",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@antv/g2plot": "^1.1.7",
+    "@craco/craco": "^5.6.4",
+    "@nivo/bar": "^0.62.0",
+    "@nivo/line": "^0.62.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "antd": "^4.3.4",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "craco-less": "^1.17.0",
+    "moment": "^2.27.0",
+    "nivo": "^0.31.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-highlight-words": "^0.16.0",
+    "react-player": "^2.3.1",
+    "react-scripts": "3.4.1",
+    "socket.io-client": "^2.3.0"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
